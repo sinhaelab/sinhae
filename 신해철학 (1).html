@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>신해철학 — 인생 2막 설계소</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --gold: #c9972a;
+    --gold-light: #e8c96a;
+    --gold-pale: #f5e9c8;
+    --rust: #8b3a1a;
+    --cream: #faf6ef;
+    --cream-dark: #f0e8d8;
+    --stone: #6b5c4a;
+    --stone-light: #9e8e7a;
+    --white: #fffdf9;
+    --shadow: rgba(26,18,9,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,18,9,0.95);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    border-bottom: 1px solid rgba(201,151,42,0.3);
+  }
+  .nav-brand {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+  }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    color: var(--stone-light);
+    text-decoration: none;
+    font-size: 13px; letter-spacing: 1px;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 48px 80px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(139,58,26,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201,151,42,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(26,18,9,0) 0%, rgba(10,7,3,0.6) 100%);
+  }
+
+  /* Ink wash texture */
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(201,151,42,0.02) 2px,
+        rgba(201,151,42,0.02) 4px
+      );
+  }
+
+  /* Big calligraphic character */
+  .hero-kanji {
+    position: absolute;
+    right: -40px; bottom: -60px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(300px, 35vw, 500px);
+    font-weight: 900;
+    color: rgba(201,151,42,0.05);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; font-weight: 300; font-style: italic;
+    color: var(--gold);
+    letter-spacing: 6px; text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp .8s .2s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(52px, 9vw, 96px);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 12px;
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0; animation: fadeUp .8s .4s ease forwards;
+  }
+
+  .hero-title span {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), #a06a10);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(15px, 2.5vw, 20px);
+    color: var(--stone-light);
+    letter-spacing: 3px;
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp .8s .6s ease forwards;
+  }
+
+  .hero-line {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 48px;
+    opacity: 0; animation: fadeUp .8s .7s ease forwards;
+  }
+
+  .hero-slogan {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(16px, 2.2vw, 22px);
+    color: var(--cream);
+    font-weight: 400;
+    line-height: 1.9;
+    opacity: 0; animation: fadeUp .8s .9s ease forwards;
+  }
+
+  .hero-slogan strong {
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+
+  .hero-cta-group {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    margin-top: 56px;
+    opacity: 0; animation: fadeUp .8s 1.1s ease forwards;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    border-radius: 0;
+    font-size: 13px; font-weight: 500; letter-spacing: 2px;
+    text-decoration: none; cursor: pointer;
+    transition: all .3s;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), #a06a10);
+    color: var(--ink);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,151,42,0.4); }
+
+  .btn-outline {
+    border: 1px solid rgba(201,151,42,0.5);
+    color: var(--gold-light);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: rgba(201,151,42,0.1);
+    border-color: var(--gold-light);
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp .8s 1.4s ease forwards;
+  }
+  .scroll-hint span {
+    font-size: 11px; letter-spacing: 3px; color: var(--stone-light);
+    text-transform: uppercase;
+  }
+  .scroll-arrow {
+    width: 1px; height: 40px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ── PART BANNER ── */
+  .part-banner {
+    background: var(--ink);
+    padding: 24px 48px;
+    display: flex; align-items: center; gap: 24px;
+    border-top: 1px solid rgba(201,151,42,0.2);
+    border-bottom: 1px solid rgba(201,151,42,0.2);
+  }
+  .part-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300; font-style: italic;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .part-info h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px; font-weight: 700; color: var(--white);
+    letter-spacing: 2px;
+  }
+  .part-info p {
+    font-size: 13px; color: var(--stone-light); letter-spacing: 1px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 0; }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px; font-weight: 400; font-style: italic;
+    color: var(--gold);
+    letter-spacing: 5px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700; color: var(--ink);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .section-desc {
+    font-size: 16px; color: var(--stone); line-height: 1.9;
+    max-width: 640px;
+  }
+
+  .gold-rule {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin: 20px 0;
+  }
+
+  /* ── BRAND INTRO ── */
+  .brand-section {
+    background: var(--white);
+  }
+
+  .brand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 64px;
+    border: 1px solid rgba(139,58,26,0.15);
+  }
+
+  .brand-card {
+    padding: 48px;
+    border-right: 1px solid rgba(139,58,26,0.15);
+  }
+  .brand-card:last-child { border-right: none; }
+  .brand-card:nth-child(n+3) { border-top: 1px solid rgba(139,58,26,0.15); }
+
+  .brand-card-icon {
+    font-size: 32px; margin-bottom: 16px;
+  }
+
+  .brand-card h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px; font-weight: 700; color: var(--ink);
+    margin-bottom: 12px; letter-spacing: 1px;
+  }
+
+  .brand-card p {
+    font-size: 14px; color: var(--stone); line-height: 1.9;
+  }
+
+  /* ── QUOTE BOX ── */
+  .quote-box {
+    background: var(--ink);
+    padding: 64px 80px;
+    position: relative; overflow: hidden;
+    margin: 80px 0 0;
+  }
+
+  .quote-box::before {
+    content: '"';
+    position: absolute; top: -20px; left: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px; font-weight: 300;
+    color: rgba(201,151,42,0.15);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .quote-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--cream);
+    font-weight: 400; line-height: 1.9;
+    position: relative; z-index: 1;
+  }
+
+  .quote-text em {
+    color: var(--gold-light);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .quote-source {
+    font-size: 13px; color: var(--stone-light);
+    letter-spacing: 2px; margin-top: 24px;
+    position: relative; z-index: 1;
+  }
+
+  /* ── TARGET ── */
+  .target-section { background: var(--cream-dark); }
+
+  .three-col {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 64px;
+    border: 1px solid rgba(139,58,26,0.2);
+  }
+
+  .target-col {
+    padding: 40px 32px;
+    border-right: 1px solid rgba(139,58,26,0.2);
+  }
+  .target-col:last-child { border-right: none; }
+
+  .target-col-header {
+    background: var(--ink);
+    margin: -40px -32px 32px;
+    padding: 16px 32px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+  }
+
+  .target-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    margin-bottom: 12px;
+    font-size: 14px; color: var(--stone); line-height: 1.7;
+  }
+
+  .target-item::before {
+    content: '▸';
+    color: var(--gold);
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* ── PROBLEM ── */
+  .problem-section { background: var(--white); }
+
+  .problem-statement {
+    border-left: 4px solid var(--gold);
+    padding: 32px 40px;
+    background: var(--cream-dark);
+    margin: 48px 0;
+  }
+
+  .problem-statement p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px; color: var(--ink);
+    line-height: 1.9; font-weight: 400;
+  }
+
+  .problem-statement em {
+    color: var(--rust); font-style: normal; font-weight: 700;
+  }
+
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 20px; margin-top: 40px;
+  }
+
+  .problem-item {
+    padding: 28px 32px;
+    background: var(--cream);
+    border: 1px solid rgba(139,58,26,0.12);
+    border-top: 3px solid var(--gold);
+  }
+
+  .problem-item h4 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px; font-weight: 700; color: var(--ink);
+    margin-bottom: 8px; letter-spacing: 1px;
+  }
+
+  .problem-item p {
+    font-size: 14px; color: var(--stone); line-height: 1.8;
+  }
+
+  /* ── 6 STEPS ── */
+  .steps-section {
+    background: var(--ink);
+    padding: 100px 0;
+  }
+
+  .steps-section .section-title { color: var(--white); }
+  .steps-section .section-desc { color: var(--stone-light); }
+  .steps-section .section-label { color: var(--gold); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 64px;
+    border: 1px solid rgba(201,151,42,0.15);
+  }
+
+  .step-card {
+    padding: 44px 36px;
+    border-right: 1px solid rgba(201,151,42,0.15);
+    border-bottom: 1px solid rgba(201,151,42,0.15);
+    position: relative;
+    transition: background .3s;
+  }
+
+  .step-card:hover {
+    background: rgba(201,151,42,0.05);
+  }
+
+  .step-card:nth-child(3n) { border-right: none; }
+  .step-card:nth-child(4), .step-card:nth-child(5), .step-card:nth-child(6) {
+    border-bottom: none;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300; font-style: italic;
+    color: rgba(201,151,42,0.3);
+    line-height: 1; margin-bottom: 8px;
+  }
+
+  .step-badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--gold);
+    border: 1px solid rgba(201,151,42,0.4);
+    padding: 3px 10px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .step-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px; font-weight: 700; color: var(--white);
+    margin-bottom: 16px; letter-spacing: 1px;
+  }
+
+  .step-desc {
+    font-size: 13px; color: var(--stone-light); line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .step-effect {
+    font-size: 13px; color: var(--gold-light);
+    border-top: 1px solid rgba(201,151,42,0.2);
+    padding-top: 16px;
+    line-height: 1.8;
+  }
+
+  .step-effect span {
+    display: block; color: rgba(201,151,42,0.6);
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  /* ── USP ── */
+  .usp-section { background: var(--cream-dark); }
+
+  .usp-list {
+    margin-top: 64px;
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid rgba(139,58,26,0.15);
+  }
+
+  .usp-item {
+    display: grid; grid-template-columns: 280px 1fr;
+    border-bottom: 1px solid rgba(139,58,26,0.15);
+  }
+  .usp-item:last-child { border-bottom: none; }
+
+  .usp-label {
+    background: var(--ink);
+    padding: 40px 36px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .usp-label span {
+    font-size: 11px; letter-spacing: 3px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 8px;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+  }
+
+  .usp-label h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px; font-weight: 700; color: var(--white);
+    letter-spacing: 1px; line-height: 1.5;
+  }
+
+  .usp-body {
+    padding: 40px 48px;
+    background: var(--white);
+    display: flex; align-items: center;
+  }
+
+  .usp-body p {
+    font-size: 15px; color: var(--stone); line-height: 1.9;
+  }
+
+  /* ── PART 2 ── */
+  .invest-section { background: var(--white); }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 20px; margin-top: 56px;
+  }
+
+  .highlight-card {
+    padding: 36px;
+    background: var(--ink);
+    position: relative; overflow: hidden;
+  }
+
+  .highlight-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .highlight-card h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px; font-weight: 700; color: var(--gold-light);
+    margin-bottom: 12px; letter-spacing: 1px;
+  }
+
+  .highlight-card p {
+    font-size: 14px; color: var(--stone-light); line-height: 1.9;
+  }
+
+  /* ── ENGINE ── */
+  .engine-section { background: var(--cream-dark); }
+
+  .engine-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; margin-top: 64px;
+    border: 1px solid rgba(139,58,26,0.15);
+  }
+
+  .engine-card {
+    padding: 48px 36px;
+    border-right: 1px solid rgba(139,58,26,0.15);
+  }
+  .engine-card:last-child { border-right: none; }
+
+  .engine-icon {
+    font-size: 36px; margin-bottom: 20px;
+  }
+
+  .engine-card h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px; font-weight: 700; color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .engine-badge {
+    font-size: 11px; color: var(--gold);
+    letter-spacing: 2px; margin-bottom: 16px;
+    display: block; font-family: 'Cormorant Garamond', serif; font-style: italic;
+  }
+
+  .engine-card p {
+    font-size: 14px; color: var(--stone); line-height: 1.9;
+  }
+
+  /* ── BIZ MODEL ── */
+  .biz-section { background: var(--ink); padding: 100px 0; }
+  .biz-section .section-title { color: var(--white); }
+  .biz-section .section-desc { color: var(--stone-light); }
+  .biz-section .section-label { color: var(--gold); }
+
+  .biz-table {
+    margin-top: 64px;
+    border: 1px solid rgba(201,151,42,0.2);
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .biz-table th {
+    background: rgba(201,151,42,0.15);
+    padding: 16px 24px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13px; font-weight: 700; color: var(--gold-light);
+    letter-spacing: 2px; text-align: left;
+    border-bottom: 1px solid rgba(201,151,42,0.2);
+    border-right: 1px solid rgba(201,151,42,0.1);
+  }
+
+  .biz-table td {
+    padding: 24px;
+    font-size: 14px; color: var(--stone-light); line-height: 1.8;
+    border-bottom: 1px solid rgba(201,151,42,0.1);
+    border-right: 1px solid rgba(201,151,42,0.1);
+    vertical-align: top;
+  }
+
+  .biz-table td:last-child, .biz-table th:last-child { border-right: none; }
+  .biz-table tr:last-child td { border-bottom: none; }
+
+  .biz-table .channel {
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 700; color: var(--gold-light);
+    font-size: 15px;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap-section { background: var(--white); }
+
+  .roadmap-track {
+    margin-top: 64px;
+    position: relative;
+    padding-left: 48px;
+  }
+
+  .roadmap-track::before {
+    content: '';
+    position: absolute; left: 16px; top: 16px; bottom: 16px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold), rgba(201,151,42,0.2));
+  }
+
+  .roadmap-step {
+    position: relative;
+    margin-bottom: 48px;
+    padding: 40px 48px;
+    background: var(--cream);
+    border: 1px solid rgba(139,58,26,0.12);
+  }
+
+  .roadmap-step::before {
+    content: '';
+    position: absolute; left: -39px; top: 48px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .roadmap-phase {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic; font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .roadmap-step h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px; font-weight: 700; color: var(--ink);
+    margin-bottom: 16px; letter-spacing: 1px;
+  }
+
+  .roadmap-items {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  .roadmap-item {
+    font-size: 14px; color: var(--stone);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+
+  .roadmap-item::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── EFFECT ── */
+  .effect-section { background: var(--cream-dark); }
+
+  .effect-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; margin-top: 64px;
+    border: 1px solid rgba(139,58,26,0.15);
+  }
+
+  .effect-col {
+    border-right: 1px solid rgba(139,58,26,0.15);
+  }
+  .effect-col:last-child { border-right: none; }
+
+  .effect-col-header {
+    background: var(--ink);
+    padding: 20px 32px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px; font-weight: 700; color: var(--gold-light);
+    letter-spacing: 2px;
+  }
+
+  .effect-col-body {
+    padding: 32px;
+    background: var(--white);
+  }
+
+  .effect-item {
+    font-size: 14px; color: var(--stone); line-height: 1.9;
+    display: flex; gap: 8px; margin-bottom: 10px;
+  }
+
+  .effect-item::before {
+    content: '·';
+    color: var(--gold);
+    font-weight: 700; flex-shrink: 0;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--ink);
+    padding: 120px 0;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 30% 50%, rgba(139,58,26,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,151,42,0.12) 0%, transparent 60%);
+  }
+
+  .cta-content {
+    position: relative; z-index: 1;
+  }
+
+  .cta-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; font-style: italic; font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 6px; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .cta-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900; color: var(--white);
+    line-height: 1.4; margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+
+  .cta-title em {
+    color: var(--gold-light); font-style: normal;
+  }
+
+  .cta-sub {
+    font-size: 16px; color: var(--stone-light);
+    margin-bottom: 56px; line-height: 1.8;
+  }
+
+  .cta-divider {
+    width: 64px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+  }
+
+  .contact-grid {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    text-align: left;
+    border: 1px solid rgba(201,151,42,0.25);
+    margin: 0 auto 48px;
+    min-width: 500px;
+  }
+
+  .contact-item {
+    padding: 20px 32px;
+    border-right: 1px solid rgba(201,151,42,0.25);
+    border-bottom: 1px solid rgba(201,151,42,0.25);
+  }
+  .contact-item:nth-child(2n) { border-right: none; }
+  .contact-item:nth-last-child(-n+2) { border-bottom: none; }
+
+  .contact-label {
+    font-size: 11px; color: var(--gold);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 6px;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+  }
+
+  .contact-value {
+    font-size: 15px; color: var(--white);
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 400;
+  }
+
+  .cta-motto {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px; color: var(--cream);
+    font-weight: 400; line-height: 1.9;
+    margin-top: 40px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0d0a06;
+    padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(201,151,42,0.15);
+  }
+
+  .footer-brand {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 4px;
+  }
+
+  footer p {
+    font-size: 12px; color: var(--stone);
+    letter-spacing: 1px;
+  }
+
+  /* ── PART DIVIDER ── */
+  .part-divider {
+    background: var(--ink);
+    padding: 0;
+    border-top: 1px solid rgba(201,151,42,0.2);
+    border-bottom: 1px solid rgba(201,151,42,0.2);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ── REVEAL ON SCROLL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .container { padding: 0 24px; }
+    section { padding: 64px 0; }
+    .brand-grid, .three-col, .steps-grid, .engine-grid, .effect-grid { grid-template-columns: 1fr; }
+    .brand-card, .target-col, .step-card, .engine-card, .effect-col { border-right: none !important; border-bottom: 1px solid rgba(139,58,26,0.12); }
+    .usp-item { grid-template-columns: 1fr; }
+    .highlight-grid { grid-template-columns: 1fr; }
+    .hero-cta-group { flex-direction: column; align-items: center; }
+    .contact-grid { min-width: 0; width: 90%; }
+    .hero-kanji { font-size: 220px; right: -20px; bottom: -30px; }
+    .quote-box { padding: 40px 32px; }
+    .part-banner { padding: 20px 24px; }
+    .roadmap-track { padding-left: 32px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">신해철학</div>
+  <ul class="nav-links">
+    <li><a href="#service">서비스</a></li>
+    <li><a href="#steps">6단계</a></li>
+    <li><a href="#invest">투자 제안</a></li>
+    <li><a href="#contact">문의</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-kanji">哲</div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">New Interpretation of Philosophy</p>
+    <h1 class="hero-title"><span>신해철학</span></h1>
+    <p class="hero-subtitle">인생 2막 설계소</p>
+    <div class="hero-line"></div>
+    <p class="hero-slogan">
+      나를 찾아 — 그동안 배우고 싶었던 <strong>공부도 하고</strong><br>
+      <strong>돈도 벌고</strong>, 공부에 대한 <strong>재미도 갖고</strong>
+    </p>
+    <div class="hero-cta-group">
+      <a href="#service" class="btn btn-gold">서비스 알아보기</a>
+      <a href="#invest" class="btn btn-outline">투자·파트너 제안</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PART 1 BANNER -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="part-banner" id="service">
+  <div class="part-num">01</div>
+  <div class="part-info">
+    <h2>서비스 소개서</h2>
+    <p>고객용 — 중년 여성 및 시니어 대상</p>
+  </div>
+</div>
+
+
+<!-- BRAND -->
+<section class="brand-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Brand Identity</p>
+      <h2 class="section-title">신해철학이란</h2>
+      <div class="gold-rule"></div>
+      <p class="section-desc">
+        '새롭게 풀어내는 철학'이라는 뜻입니다. 삶의 경험이 풍부한 중년 여성들이 자기 객관화를 통해 잃어버린 자아를 찾고, 보유한 유무형의 자산을 디지털 콘텐츠와 수익으로 전환하도록 돕는 <strong>인문·기술 융합 플랫폼</strong>입니다.
+      </p>
+    </div>
+
+    <div class="brand-grid reveal" style="transition-delay:.1s">
+      <div class="brand-card">
+        <div class="brand-card-icon">🔍</div>
+        <h3>자기 객관화</h3>
+        <p>데이터와 철학으로 '나'를 직면합니다. 주관적 조언이 아닌 카르마코드·언행심리·사상체질 데이터가 말하게 합니다.</p>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-icon">💡</div>
+        <h3>재능 자산화</h3>
+        <p>있는지도 몰랐던 삶의 노하우를 발굴하여 유튜브, 블로그, 전자책 등 수익형 콘텐츠로 전환합니다.</p>
+      </div>
+      <div class="brand-card" style="border-right:1px solid rgba(139,58,26,.15)">
+        <div class="brand-card-icon">📖</div>
+        <h3>인문학적 치유</h3>
+        <p>사주·음양오행·천부경으로 자신과 가족의 관계를 이해하고, 삶의 원리를 깨달아 '철'이 드는 과정입니다.</p>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-icon">🤖</div>
+        <h3>AI 레버리지</h3>
+        <p>어렵게 느껴지는 AI를 '인생의 지혜를 전달하는 디지털 붓'으로 재정의합니다. 기술을 부리는 어른이 됩니다.</p>
+      </div>
+    </div>
+
+    <div class="quote-box reveal" style="transition-delay:.2s">
+      <p class="quote-text">
+        "나이 60, 인생의 위기는 <em>'돈'이 아니라 '나를 모르는 것'</em>에서 시작됩니다.<br>
+        자기 객관화가 안 된 사람은 나이만 먹을 뿐, 삶을 경영하지 못합니다."
+      </p>
+      <p class="quote-source">— 신해철학 핵심 철학</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- TARGET -->
+<section class="target-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Who We Serve</p>
+      <h2 class="section-title">서비스 대상</h2>
+      <div class="gold-rule"></div>
+      <p class="section-desc">경제적 여유는 생겼지만 정서적으로는 '누구의 엄마·아내'가 아닌 <strong>본연의 나</strong>를 찾고자 하는 열망이 가장 강한 시기의 분들입니다.</p>
+    </div>
+
+    <div class="three-col reveal" style="transition-delay:.1s">
+      <div class="target-col">
+        <div class="target-col-header">원하는 것 (Needs)</div>
+        <div class="target-item">자녀·배우자와의 관계 개선</div>
+        <div class="target-item">나만의 소일거리와 수익</div>
+        <div class="target-item">평생 공부의 즐거움</div>
+        <div class="target-item">인생 후반기 정리와 새 출발</div>
+        <div class="target-item">건강하고 품격 있는 노후</div>
+        <div class="target-item">형제·자식 걱정의 해소</div>
+      </div>
+      <div class="target-col">
+        <div class="target-col-header">두려운 것 (Pain Point)</div>
+        <div class="target-item">자신의 재능을 과소평가</div>
+        <div class="target-item">디지털 도구에 대한 두려움</div>
+        <div class="target-item">나이 들어 고치기 어렵다는 좌절</div>
+        <div class="target-item">자식·형제 갈등의 반복</div>
+        <div class="target-item">고립과 자존감 하락</div>
+        <div class="target-item">재산·건강 리스크 불안</div>
+      </div>
+      <div class="target-col">
+        <div class="target-col-header">신해철학의 답 (Solution)</div>
+        <div class="target-item">데이터 기반 자기 객관화</div>
+        <div class="target-item">단계별 재능 발굴 & 수익화</div>
+        <div class="target-item">동양 철학으로 관계 이해</div>
+        <div class="target-item">AI 활용 지혜 콘텐츠화</div>
+        <div class="target-item">지혜 공유 커뮤니티 소속</div>
+        <div class="target-item">레거시(유산) 설계 지원</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROBLEM -->
+<section class="problem-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Core Problem</p>
+      <h2 class="section-title">핵심 문제 인식</h2>
+      <div class="gold-rule"></div>
+    </div>
+
+    <div class="problem-statement reveal" style="transition-delay:.1s">
+      <p>
+        수많은 상담과 관찰을 통해 확인된 사실이 있습니다.<br>
+        배려 없는 고집, 자녀와의 갈등, 재산 관리 실패, 형제간 불화의 근본 원인을 들여다보면<br>
+        대부분 <em>'자기 객관화의 부재'</em>로 귀결됩니다.
+      </p>
+    </div>
+
+    <div class="problem-grid reveal" style="transition-delay:.2s">
+      <div class="problem-item">
+        <h4>나이만 먹은 '어른아이'의 위기</h4>
+        <p>60년 세월을 보냈어도 '철'이 들지 않는 이유는 본인의 삶을 객관적으로 응시할 기회가 없었기 때문입니다.</p>
+      </div>
+      <div class="problem-item">
+        <h4>반복되는 실패의 굴레</h4>
+        <p>자신의 약점을 인지하지 못하면 똑같은 실수를 다른 모양으로 반복합니다. 결국 성장이 멈춘 상태로 방황하게 됩니다.</p>
+      </div>
+      <div class="problem-item">
+        <h4>재능의 사장(死藏)</h4>
+        <p>있어도 뭔지 모르고, 알아도 돈으로 만드는 방법을 모릅니다. 그러나 삶에서 배운 노하우는 누구보다 풍부합니다.</p>
+      </div>
+      <div class="problem-item">
+        <h4>관계의 붕괴</h4>
+        <p>내가 타인에게 어떻게 비춰지는지 모르면 의도치 않게 상처를 주거나 고립됩니다. 고립은 노년의 가장 큰 위기입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 6 STEPS -->
+<section class="steps-section" id="steps">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">6-Step Program</p>
+      <h2 class="section-title" style="color:var(--white)">6단계 인생 리모델링</h2>
+      <div class="gold-rule"></div>
+      <p class="section-desc" style="color:var(--stone-light)">
+        '과거 정리 → 현재 발견 → 본질 탐구 → 미래 도구'의 체계적인 흐름으로 설계되었습니다.<br>
+        각 단계는 독립적으로도, 연결하여도 효과를 발휘합니다.
+      </p>
+    </div>
+
+    <div class="steps-grid reveal" style="transition-delay:.15s">
+
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-badge">인생 기록</div>
+        <div class="step-name">인생 아카이빙</div>
+        <p class="step-desc">심층 인터뷰 기반 자서전·에세이·소설 집필 지원. 막연한 과거를 '기록된 역사'로 자산화합니다.</p>
+        <div class="step-effect">
+          <span>자기 객관화 포인트</span>
+          내 삶을 제3자의 눈으로 읽어보기
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-badge">재능 발굴</div>
+        <div class="step-name">재능 연금술</div>
+        <p class="step-desc">숨은 재능 발굴 및 유튜브·블로그 채널 설계. 내 경험이 '돈이 되는 구조'의 기틀을 마련합니다.</p>
+        <div class="step-effect">
+          <span>자기 객관화 포인트</span>
+          내 가치를 시장 가치로 환산해보기
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-badge">관계 이해</div>
+        <div class="step-name">운명 리스크 관리</div>
+        <p class="step-desc">사주·궁합의 학문적 풀이 및 가족 역학 관계 학습. 인간관계 갈등을 원리로 해소합니다.</p>
+        <div class="step-effect">
+          <span>자기 객관화 포인트</span>
+          타인이 나와 다름을 우주적 원리로 수용
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-badge">심리 진단</div>
+        <div class="step-name">심리 정밀 진단</div>
+        <p class="step-desc">카르마코드·언행심리·사상체질 데이터 분석으로 내 성정의 결함과 강점을 수치로 직면합니다.</p>
+        <div class="step-effect">
+          <span>자기 객관화 포인트</span>
+          완벽한 자기 객관화와 기질적 강점 파악
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <div class="step-badge">인문 수양</div>
+        <div class="step-name">동양 인문학 정수</div>
+        <p class="step-desc">천부경·음양오행·한자 원리 심화 학습. 삶의 근본 원리를 체득하여 지적 자존감을 높입니다.</p>
+        <div class="step-effect">
+          <span>자기 객관화 포인트</span>
+          인간사의 원리를 깨달아 '철'이 드는 과정
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <div class="step-badge">미래 도구</div>
+        <div class="step-name">AI 스마트 레버리지</div>
+        <p class="step-desc">AI 프롬프트 개발을 통한 지식 콘텐츠 자동 생성. 기술을 부리는 '디지털 리더'로 변모합니다.</p>
+        <div class="step-effect">
+          <span>자기 객관화 포인트</span>
+          내 지혜를 전 세계로 송출하는 스마트 시니어
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- USP -->
+<section class="usp-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Unique Selling Point</p>
+      <h2 class="section-title">신해철학만의 차별화</h2>
+      <div class="gold-rule"></div>
+    </div>
+
+    <div class="usp-list reveal" style="transition-delay:.1s">
+
+      <div class="usp-item">
+        <div class="usp-label">
+          <span>01</span>
+          <h3>강제적 자기 객관화</h3>
+        </div>
+        <div class="usp-body">
+          <p>주관적 조언이 아닙니다. 카르마코드·언행심리·사상체질 데이터를 통해 "당신의 데이터가 이렇게 말합니다"라는 객관적 지표를 제시하여, 60대 이상의 고착화된 아집도 스스로 돌아보게 만드는 유일한 방법론입니다.</p>
+        </div>
+      </div>
+
+      <div class="usp-item">
+        <div class="usp-label">
+          <span>02</span>
+          <h3>공부 + 수익의 결합</h3>
+        </div>
+        <div class="usp-body">
+          <p>배우는 즐거움에서 그치지 않습니다. 사주·음양오행·한자 지식을 AI를 활용해 수익형 콘텐츠로 만드는 실용성까지 갖췄습니다. '내가 배운 한자 지식으로 블로그 글을 AI로 쓰는 법'처럼 앞선 단계와 유기적으로 연결됩니다.</p>
+        </div>
+      </div>
+
+      <div class="usp-item">
+        <div class="usp-label">
+          <span>03</span>
+          <h3>레거시(유산) 설계</h3>
+        </div>
+        <div class="usp-body">
+          <p>재산보다 귀한 것은 가치관입니다. 자녀에게 남기는 영상 편지, 가문의 지혜 가이드북 제작 등 '부모의 철학을 유산으로 남기는 기술'을 제공합니다. 자식 농사의 마무리를 돕는 강력한 서비스입니다.</p>
+        </div>
+      </div>
+
+      <div class="usp-item">
+        <div class="usp-label">
+          <span>04</span>
+          <h3>세대 공감형 기술 교육</h3>
+        </div>
+        <div class="usp-body">
+          <p>어렵게 느껴지는 AI를 '인생의 지혜를 전달하는 디지털 붓'으로 재정의합니다. 손주와 대화하고, 내 지혜를 전 세계로 보내는 '멋진 어른'이 되는 도구입니다. 기술 소외감을 자신감으로 전환합니다.</p>
+        </div>
+      </div>
+
+      <div class="usp-item">
+        <div class="usp-label">
+          <span>05</span>
+          <h3>커뮤니티 & 동반 성장</h3>
+        </div>
+        <div class="usp-body">
+          <p>혼자 공부가 아니라 비슷한 처지의 도반(길동무)들과 함께 성장하는 구조입니다. '내 지혜로 번 첫 수익'의 가치가 자존감을 살리는 가장 강력한 치료제가 됩니다. 사회적 고립을 지적 연대로 전환합니다.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PART 2 BANNER -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="part-banner" id="invest">
+  <div class="part-num">02</div>
+  <div class="part-info">
+    <h2>사업화 투자 제안서</h2>
+    <p>투자자·파트너용 — IR 자료</p>
+  </div>
+</div>
+
+
+<!-- INVEST HIGHLIGHT -->
+<section class="invest-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Investment Highlights</p>
+      <h2 class="section-title">투자 하이라이트</h2>
+      <div class="gold-rule"></div>
+      <p class="section-desc">
+        신해철학은 단순한 교육 서비스가 아닙니다. 1,000만 시니어의 <strong>정신적·경제적 리모델링</strong>을 수행하는 설계자입니다.
+      </p>
+    </div>
+
+    <div class="highlight-grid reveal" style="transition-delay:.1s">
+      <div class="highlight-card">
+        <h3>독보적 시장성</h3>
+        <p>구매력은 높으나 정서적 갈등으로 방황하는 '액티브 시니어' 타겟. 초고령화 사회 진입과 함께 시장이 급속히 확대 중입니다. 현재 이 수요를 정면으로 다루는 플랫폼은 존재하지 않습니다.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>사회 문제 해결</h3>
+        <p>노년의 아집으로 인한 가정 파탄, 고독, 자산 관리 실패를 '자기 객관화 데이터'로 예방합니다. 이혼·상속 분쟁·우울증 등 사회적 비용을 혁신적으로 줄이는 라이프 교정 비즈니스입니다.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>확장 가능한 BM</h3>
+        <p>단순 상담이 아닌 [진단 데이터 + 교육 콘텐츠 + AI 기술]이 결합된 에듀테크/실버테크 플랫폼 구조입니다. B2C에서 B2B, Data Business로 단계적 확장이 설계되어 있습니다.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>선점 효과</h3>
+        <p>동양 철학(사주·카르마·천부경)과 첨단 AI를 결합한 'K-인문학 솔루션'은 국내외 경쟁자가 없는 블루오션입니다. 지금이 카테고리를 정의할 수 있는 유일한 시점입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ENGINE -->
+<section class="engine-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Core Engine</p>
+      <h2 class="section-title">3대 핵심 사업 엔진</h2>
+      <div class="gold-rule"></div>
+      <p class="section-desc">신해철학은 세 가지 핵심 엔진이 유기적으로 결합된 플랫폼 비즈니스입니다.</p>
+    </div>
+
+    <div class="engine-grid reveal" style="transition-delay:.1s">
+      <div class="engine-card">
+        <div class="engine-icon">📊</div>
+        <span class="engine-badge">Engine 01</span>
+        <h3>진단 데이터 엔진</h3>
+        <p>카르마코드·언행심리·사상체질 데이터를 축적하여 개인별 '인생 리스크 관리 리포트'를 발행합니다. 데이터가 말하게 함으로써 60대 이상의 고착화된 성향도 스스로 직면하게 만드는 유일한 방법론입니다.</p>
+      </div>
+      <div class="engine-card">
+        <div class="engine-icon">🤖</div>
+        <span class="engine-badge">Engine 02</span>
+        <h3>AI 레버리지 엔진</h3>
+        <p>시니어의 풍부한 경험(Raw Data)을 AI 기술과 결합하여 수익형 콘텐츠로 자동 생성하는 시스템을 구축합니다. 사용자는 자신의 지혜를 전 세계에 유통하는 '콘텐츠 생산자'가 됩니다.</p>
+      </div>
+      <div class="engine-card">
+        <div class="engine-icon">🌐</div>
+        <span class="engine-badge">Engine 03</span>
+        <h3>커뮤니티 네트워크 엔진</h3>
+        <p>전국 단위 '지혜 공유 네트워크'를 구축합니다. 시니어 커뮤니티는 플랫폼 이탈률을 낮추고, 지자체·기업·금융권과의 B2B 연계로 확장됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BIZ MODEL -->
+<section class="biz-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Revenue Streams</p>
+      <h2 class="section-title" style="color:var(--white)">비즈니스 모델</h2>
+      <div class="gold-rule"></div>
+      <p class="section-desc" style="color:var(--stone-light)">세 가지 채널을 통해 수익이 다층적으로 발생하는 구조입니다.</p>
+    </div>
+
+    <table class="biz-table reveal" style="transition-delay:.1s">
+      <thead>
+        <tr>
+          <th>채널</th>
+          <th>모델</th>
+          <th>세부 내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="channel">B2C<br><span style="font-size:12px;font-weight:300;color:var(--stone-light)">개인</span></td>
+          <td>정밀 진단 리포트<br>구독 교육 서비스<br>1:1 컨설팅</td>
+          <td>카르마·사주·체질 진단 리포트 개별 판매<br>6단계 커리큘럼 월정액 구독 모델<br>인생 재설계 개인 컨설팅 패키지</td>
+        </tr>
+        <tr>
+          <td class="channel">B2B<br><span style="font-size:12px;font-weight:300;color:var(--stone-light)">조직·지자체</span></td>
+          <td>위탁 교육<br>제휴 서비스</td>
+          <td>은퇴 예정자 대상 '인생 재설계' 위탁 교육<br>금융권 시니어 자산 관리 연계 서비스<br>복지관·문화센터 프로그램 공급</td>
+        </tr>
+        <tr>
+          <td class="channel">Data<br><span style="font-size:12px;font-weight:300;color:var(--stone-light)">데이터</span></td>
+          <td>DB 라이선스<br>헬스케어 연계</td>
+          <td>한국형 시니어 심리·기질 DB 상용화<br>실버 산업·의료기관·보험사 데이터 연계<br>맞춤형 라이프케어 솔루션 제공</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ROADMAP -->
+<section class="roadmap-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Growth Roadmap</p>
+      <h2 class="section-title">성장 로드맵</h2>
+      <div class="gold-rule"></div>
+    </div>
+
+    <div class="roadmap-track reveal" style="transition-delay:.1s">
+      <div class="roadmap-step">
+        <p class="roadmap-phase">Phase 1 — MVP 런칭</p>
+        <h3>서비스 시작</h3>
+        <div class="roadmap-items">
+          <div class="roadmap-item">6단계 커리큘럼 기반 오프라인·온라인 상담 및 교육 시작</div>
+          <div class="roadmap-item">개인 고객 대상 진단 리포트 및 1:1 컨설팅 운영</div>
+          <div class="roadmap-item">초기 커뮤니티(지혜 도반) 구성 및 사례 DB 축적</div>
+        </div>
+      </div>
+
+      <div class="roadmap-step">
+        <p class="roadmap-phase">Phase 2 — 플랫폼화</p>
+        <h3>플랫폼 구축</h3>
+        <div class="roadmap-items">
+          <div class="roadmap-item">자체 심리·기질 진단 알고리즘 고도화</div>
+          <div class="roadmap-item">시니어 지혜 공유 커뮤니티 활성화 및 구독 모델 도입</div>
+          <div class="roadmap-item">지자체·복지기관 B2B 위탁 교육 계약 시작</div>
+        </div>
+      </div>
+
+      <div class="roadmap-step" style="margin-bottom:0">
+        <p class="roadmap-phase">Phase 3 — 생태계 확장</p>
+        <h3>전국민 서비스화</h3>
+        <div class="roadmap-items">
+          <div class="roadmap-item">전국 단위 시니어 '지혜 자산' DB 구축</div>
+          <div class="roadmap-item">B2B(지자체·금융권) 연계 본격화</div>
+          <div class="roadmap-item">K-인문학 글로벌 솔루션 수출 및 해외 시장 진출</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EFFECT -->
+<section class="effect-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Expected Impact</p>
+      <h2 class="section-title">기대 효과</h2>
+      <div class="gold-rule"></div>
+    </div>
+
+    <div class="effect-grid reveal" style="transition-delay:.1s">
+      <div class="effect-col">
+        <div class="effect-col-header">개인적 효과</div>
+        <div class="effect-col-body">
+          <div class="effect-item">'추하게 늙지 않는' 품격 확보</div>
+          <div class="effect-item">잃어버린 자아 & 자존감 회복</div>
+          <div class="effect-item">새로운 소일거리와 실질 수익 창출</div>
+          <div class="effect-item">AI·디지털 세대와의 소통 능력</div>
+          <div class="effect-item">건강하고 의미 있는 노후 설계</div>
+          <div class="effect-item">레거시(유산) 완성의 기쁨</div>
+        </div>
+      </div>
+      <div class="effect-col">
+        <div class="effect-col-header">가정·사회적 효과</div>
+        <div class="effect-col-body">
+          <div class="effect-item">자녀·형제와의 갈등 해소</div>
+          <div class="effect-item">이혼·상속 분쟁 등 사회적 비용 절감</div>
+          <div class="effect-item">세대 간 지혜 전달 문화 형성</div>
+          <div class="effect-item">시니어 고독사·우울증 예방</div>
+          <div class="effect-item">가족 관계 회복과 화목한 노후</div>
+        </div>
+      </div>
+      <div class="effect-col">
+        <div class="effect-col-header">산업적 효과</div>
+        <div class="effect-col-body">
+          <div class="effect-item">시니어 에듀테크 새 카테고리 선점</div>
+          <div class="effect-item">K-인문학 글로벌 콘텐츠 수출</div>
+          <div class="effect-item">실버 산업 데이터 인프라 구축</div>
+          <div class="effect-item">철학·AI 융합 신시장 개척</div>
+          <div class="effect-item">한국형 시니어 복지 모델 제시</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-content reveal">
+      <p class="cta-eyebrow">Call to Action</p>
+      <h2 class="cta-title">
+        대한민국의 거대한 지혜 자산을 깨울<br>
+        <em>신해철학의 파트너를 찾습니다</em>
+      </h2>
+      <p class="cta-sub">
+        나이 먹어도 철이 안 드는 세상을 향해,<br>
+        데이터와 철학으로 인생의 정답을 제시합니다.
+      </p>
+
+      <div class="cta-divider"></div>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <p class="contact-label">기획·설계자</p>
+          <p class="contact-value">성명 기입</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">연락처</p>
+          <p class="contact-value">연락처 기입</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">웹사이트</p>
+          <p class="contact-value">URL 기입</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">이메일</p>
+          <p class="contact-value">이메일 기입</p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px">
+        <a href="#" class="btn btn-gold">서비스 문의하기</a>
+        <a href="#" class="btn btn-outline">투자 미팅 신청</a>
+      </div>
+
+      <p class="cta-motto">
+        "지혜롭게 늙는 것은 선택이 아니라 실력입니다.<br>신해철학이 당신의 실력이 되어드립니다."
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- VISION LINK -->
+<section style="background:var(--ink);padding:80px 0;text-align:center;border-top:1px solid rgba(201,151,42,0.15);">
+  <div style="max-width:640px;margin:0 auto;padding:0 48px;">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;font-weight:300;color:var(--gold);letter-spacing:6px;text-transform:uppercase;margin-bottom:24px;">Grand Vision</p>
+    <p style="font-family:'Noto Serif KR',serif;font-size:clamp(15px,2vw,18px);color:rgba(250,246,239,0.6);line-height:1.9;margin-bottom:32px;">
+      신해철학이 품고 있는 더 큰 이야기가 있습니다.<br>
+      <span style="color:rgba(232,201,106,0.8);">K-인문학이 만드는 거대한 문화의 성</span> —<br>
+      개인의 행복을 넘어 국가와 민족의 재산이 되는 비전을 담았습니다.
+    </p>
+    <a href="신해철학_비전선언문.html"
+       style="display:inline-flex;align-items:center;gap:12px;padding:16px 40px;border:1px solid rgba(201,151,42,0.5);color:var(--gold-light);font-family:'Noto Serif KR',serif;font-size:15px;font-weight:500;letter-spacing:2px;text-decoration:none;transition:all .3s;"
+       onmouseover="this.style.background='rgba(201,151,42,0.1)';this.style.borderColor='var(--gold-light)'"
+       onmouseout="this.style.background='transparent';this.style.borderColor='rgba(201,151,42,0.5)'">
+      K-인문학 비전 선언문 읽기 &nbsp;→
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">신해철학</div>
+  <p>어제의 지혜로 내일의 부를 설계하는 인생 2막 설계소</p>
+</footer>
+
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
