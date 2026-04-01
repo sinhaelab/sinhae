@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소기업 실전 마케팅 리포트 | 25년 현장 전문가의 실전 가이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0e0e0e;
+    --white: #fafaf8;
+    --cream: #f5f1ea;
+    --ink: #1a1a18;
+    --muted: #6b6b65;
+    --gold: #c4923a;
+    --gold-light: #f0d89a;
+    --gold-dark: #8a6120;
+    --red-warn: #a33030;
+    --green-ok: #2e6b3a;
+    --border: rgba(10,10,10,0.12);
+    --section-pad: 6rem 2rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.05rem; font-weight: 700;
+    letter-spacing: -0.01em; color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 0.8rem; font-weight: 500;
+    background: var(--ink); color: var(--white);
+    padding: 0.55rem 1.2rem; border-radius: 2px;
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 2.5rem 5rem;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -10%; right: -5%;
+    width: 60vw; height: 60vw; max-width: 700px; max-height: 700px;
+    background: radial-gradient(circle, rgba(196,146,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.18em; color: var(--gold-dark);
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-weight: 800; line-height: 1.18;
+    letter-spacing: -0.025em;
+    max-width: 780px; margin-bottom: 1.8rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 560px; line-height: 1.85;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    font-size: 0.9rem; font-weight: 500;
+    background: var(--ink); color: var(--white);
+    padding: 0.9rem 2.2rem; border-radius: 2px;
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    font-size: 0.85rem; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.03em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px; transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--ink); }
+
+  .hero-meta {
+    margin-top: 4rem;
+    display: flex; gap: 3rem; flex-wrap: wrap;
+  }
+  .meta-item { font-size: 0.8rem; color: var(--muted); }
+  .meta-item strong { display: block; font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: var(--section-pad); }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-dark); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-weight: 800; line-height: 1.2;
+    letter-spacing: -0.02em; margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: var(--muted); font-size: 1rem;
+    max-width: 580px; line-height: 1.85;
+    margin-bottom: 3rem;
+  }
+
+  /* ── WHY ── */
+  .why { background: var(--white); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border: 0.5px solid var(--border);
+  }
+  .why-item {
+    padding: 2rem 1.8rem;
+    border-right: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .why-item:nth-child(3n) { border-right: none; }
+  .why-num {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 2.5rem; font-weight: 800;
+    color: var(--gold-light); line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .why-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .why-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+  /* ── REPORTS ── */
+  .reports { background: var(--cream); }
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .report-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    padding: 2rem 1.8rem 1.8rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .report-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+  .report-badge {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1px;
+    margin-bottom: 1.2rem; display: inline-block;
+  }
+  .badge-new { background: var(--gold-light); color: var(--gold-dark); }
+  .badge-season { background: #e8f0e8; color: var(--green-ok); }
+  .badge-custom { background: #f0e8e8; color: var(--red-warn); }
+  .badge-upcoming { background: #e8eaf0; color: #3a4a8a; }
+  .report-card h3 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.2rem; font-weight: 700;
+    line-height: 1.35; margin-bottom: 0.7rem;
+  }
+  .report-card .desc { font-size: 0.85rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; }
+  .report-topics { list-style: none; margin-bottom: 1.5rem; }
+  .report-topics li {
+    font-size: 0.8rem; color: var(--muted);
+    padding: 0.35rem 0;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .report-topics li::before {
+    content: '—'; color: var(--gold); flex-shrink: 0;
+    font-size: 0.75rem; margin-top: 0.05rem;
+  }
+  .report-price {
+    display: flex; align-items: baseline; gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .price-amount {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.6rem; font-weight: 800; color: var(--ink);
+  }
+  .price-unit { font-size: 0.8rem; color: var(--muted); }
+  .price-tbd {
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--muted); font-style: italic;
+  }
+  .report-cta {
+    display: block; text-align: center;
+    padding: 0.75rem; border: 1px solid var(--ink);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em;
+    color: var(--ink); text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .report-cta:hover { background: var(--ink); color: var(--white); }
+  .report-cta.disabled {
+    border-color: var(--border); color: var(--muted);
+    cursor: default; pointer-events: none;
+  }
+  .featured-card {
+    border-color: var(--gold);
+    border-width: 1.5px;
+  }
+  .featured-card::after {
+    content: '추천';
+    position: absolute; top: -1px; right: 1.5rem;
+    background: var(--gold); color: var(--white);
+    font-size: 0.65rem; letter-spacing: 0.1em;
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* ── CONTENTS ── */
+  .contents { background: var(--white); }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+  .toc-chapter { }
+  .chapter-num {
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    color: var(--gold-dark); font-weight: 500;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .chapter-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; }
+  .chapter-items { list-style: none; }
+  .chapter-items li {
+    font-size: 0.83rem; color: var(--muted);
+    padding: 0.35rem 0;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; gap: 0.5rem; align-items: flex-start;
+  }
+  .chapter-items li::before {
+    content: '·'; color: var(--gold); flex-shrink: 0;
+    font-size: 1.2rem; line-height: 1.1;
+  }
+
+  /* ── BLACKLIST ── */
+  .blacklist { background: #1a1410; color: #e8e0d0; }
+  .blacklist .section-label { color: #c49a4a; }
+  .blacklist .section-title { color: #f0e8d8; }
+  .blacklist .section-desc { color: #9a9080; }
+  .warn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .warn-card {
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    padding: 1.8rem;
+  }
+  .warn-icon {
+    width: 2.2rem; height: 2.2rem;
+    background: rgba(163,48,48,0.2);
+    border: 0.5px solid rgba(163,48,48,0.5);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; font-size: 0.9rem; color: #e07070;
+  }
+  .warn-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; color: #f0e8d8; }
+  .warn-card p { font-size: 0.82rem; color: #9a9080; line-height: 1.75; }
+  .warn-card .tag {
+    display: inline-block; margin-top: 0.8rem;
+    font-size: 0.65rem; letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    background: rgba(163,48,48,0.15);
+    color: #e07070; border: 0.5px solid rgba(163,48,48,0.3);
+  }
+
+  /* ── GLOSSARY ── */
+  .glossary { background: var(--cream); }
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .term-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    padding: 1.2rem 1.4rem;
+  }
+  .term-abbr {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--gold-dark);
+    text-transform: uppercase; margin-bottom: 0.3rem;
+  }
+  .term-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .term-def { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── ORDER ── */
+  .order { background: var(--ink); color: var(--cream); }
+  .order .section-label { color: var(--gold-light); }
+  .order .section-title { color: var(--cream); }
+  .order .section-desc { color: rgba(245,241,234,0.6); }
+  .order-steps {
+    display: flex; gap: 0; flex-wrap: wrap;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    margin-bottom: 3rem;
+  }
+  .order-step {
+    flex: 1; min-width: 180px;
+    padding: 1.8rem 1.5rem;
+    border-right: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .order-step:last-child { border-right: none; }
+  .step-no {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 2rem; font-weight: 800;
+    color: rgba(196,146,58,0.3); line-height: 1;
+    margin-bottom: 0.7rem;
+  }
+  .step-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--cream); }
+  .step-desc { font-size: 0.8rem; color: rgba(245,241,234,0.5); line-height: 1.65; }
+
+  .bank-info {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(255,255,255,0.12);
+    padding: 2rem 2.5rem;
+    max-width: 520px;
+  }
+  .bank-row {
+    display: flex; justify-content: space-between;
+    align-items: baseline; padding: 0.6rem 0;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    font-size: 0.88rem;
+  }
+  .bank-row:last-child { border-bottom: none; }
+  .bank-label { color: rgba(245,241,234,0.45); font-size: 0.78rem; }
+  .bank-value { color: var(--cream); font-weight: 500; }
+  .bank-note {
+    margin-top: 1.2rem;
+    font-size: 0.78rem;
+    color: rgba(245,241,234,0.4);
+    line-height: 1.7;
+  }
+  .bank-note strong { color: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0e0e0c;
+    color: rgba(245,241,234,0.35);
+    padding: 2.5rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.78rem;
+  }
+  footer a { color: rgba(245,241,234,0.4); text-decoration: none; }
+  footer a:hover { color: rgba(245,241,234,0.7); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 0.5px; background: var(--border); margin: 0 2.5rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .why-item:nth-child(3n) { border-right: 0.5px solid var(--border); }
+    .why-item:nth-child(odd) { border-right: 0.5px solid var(--border); }
+    .order-step { border-right: none; border-bottom: 0.5px solid rgba(255,255,255,0.1); }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero h1      { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub     { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-actions { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-meta    { animation: fadeUp 0.6s 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">소기업 마케팅 리포트</a>
+  <ul class="nav-links">
+    <li><a href="#reports">리포트 목록</a></li>
+    <li><a href="#contents">목차</a></li>
+    <li><a href="#blacklist">주의 정보</a></li>
+    <li><a href="#order">구매 안내</a></li>
+  </ul>
+  <a class="nav-cta" href="#order">지금 구매하기</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">25년 현장 전문가의 소기업 전용 실전 가이드</p>
+  <h1>광고비 쓰기 전에<br><em>먼저 읽어야 할</em><br>마케팅 리포트</h1>
+  <p class="hero-sub">
+    수천만 원짜리 대행사 전략이 아닙니다.<br>
+    수십~수백만 원 예산으로 내일 당장 실행할 수 있는,
+    소기업·소상공인만을 위한 현장 밀착형 마케팅 가이드입니다.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#reports">리포트 둘러보기</a>
+    <a class="btn-secondary" href="#contents">목차 미리보기</a>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item"><strong>연 2회</strong>상·하반기 정기 발행</div>
+    <div class="meta-item"><strong>6개+</strong>업종별 맞춤 구성</div>
+    <div class="meta-item"><strong>25년</strong>현장 경험 기반</div>
+    <div class="meta-item"><strong>입금 즉시</strong>이메일 발송</div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <p class="section-label">왜 이 리포트인가</p>
+    <h2 class="section-title">소기업 마케팅,<br>대기업 전략이 통하지 않는 이유</h2>
+    <p class="section-desc">대형 대행사의 보고서는 '브랜드 지수'와 '점유율'을 다룹니다. 소기업 사장님에게 필요한 건 오늘 당장 당근마켓에 올릴 문구와 네이버 플레이스 키워드입니다.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <h3>바로 집행하는 레시피</h3>
+        <p>이론 없이 "이 예산에 이 매체를 이 비율로" 쓰는 실행 가이드만 담습니다. 읽고 나서 다음 날 바로 집행 가능합니다.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <h3>예산대별 최적 조합 제시</h3>
+        <p>50만 원·100만 원·200만 원 예산별로 어떤 매체를 어떤 비율로 써야 하는지 수치로 제시합니다. 추상적인 조언 없습니다.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <h3>속지 않는 법까지 수록</h3>
+        <p>사기성 대행사와 효과 없는 광고 상품을 구별하는 법, 대행사 미팅 때 써야 할 질문 리스트까지 포함합니다.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <h3>업종·타겟별 세분화</h3>
+        <p>고깃집과 학원의 마케팅은 완전히 달라야 합니다. 업종별·연령대별·지역별로 다른 전략을 분리해 제공합니다.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">05</div>
+        <h3>최신 소비 트렌드 반영</h3>
+        <p>요노(YONO), AI 에이전트 검색, 숏폼 마케팅 등 2025~2026년 실제 소비자 행동 변화를 근거로 전략을 수립합니다.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">06</div>
+        <h3>마케팅 용어 사전 포함</h3>
+        <p>CTR, ROAS, CPA, LSO 등 대행사와의 미팅에서 기죽지 않기 위한 핵심 용어를 쉬운 말로 정리합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORTS -->
+<section class="reports" id="reports">
+  <div class="section-inner">
+    <p class="section-label">리포트 목록</p>
+    <h2 class="section-title">대상·업종·시즌별<br>맞춤 리포트를 선택하세요</h2>
+    <p class="section-desc">표준 리포트는 연 2회 발행됩니다. 맞춤형 리포트는 별도 견적으로 진행되며, 구매 후 이메일로 즉시 발송합니다.</p>
+    <div class="reports-grid">
+
+      <!-- 상반기 표준 -->
+      <div class="report-card featured-card">
+        <span class="report-badge badge-new">2026 상반기 발행</span>
+        <h3>소기업·소상공인 마케팅 가이드<br>상반기호 (2026. 1~6월)</h3>
+        <p class="desc">신년 타겟팅, 봄·여름 시즌 공략, 전환경로 최적화 전략 수록. 예산 50~200만 원대 집행 레시피 포함.</p>
+        <ul class="report-topics">
+          <li>2026 상반기 소비 트렌드 & 연령대별 행동 분석</li>
+          <li>50/100/200만 원 예산별 매체 배분표</li>
+          <li>당근마켓·카카오·인스타 집행 실전 가이드</li>
+          <li>네이버 플레이스 상위 노출 최적화 체크리스트</li>
+          <li>카피라이팅 템플릿 10선 (업종별)</li>
+          <li>피해야 할 광고 상품·대행사 블랙리스트</li>
+        </ul>
+        <div class="report-price">
+          <span class="price-amount">가격 미정</span>
+          <span class="price-unit">— 곧 공개됩니다</span>
+        </div>
+        <a class="report-cta disabled" href="#">출시 알림 신청</a>
+      </div>
+
+      <!-- 하반기 표준 -->
+      <div class="report-card">
+        <span class="report-badge badge-season">2026 하반기 발행</span>
+        <h3>소기업·소상공인 마케팅 가이드<br>하반기호 (2026. 7~12월)</h3>
+        <p class="desc">추석·연말 대목 대비, 재방문·단골 확보 전략 중심. 성수기 광고비 절감 방법 수록.</p>
+        <ul class="report-topics">
+          <li>2026 하반기 소비 심리 분석</li>
+          <li>단골 고객 CRM 마케팅 실전 시나리오</li>
+          <li>추석·연말 시즌 타겟팅 캘린더</li>
+          <li>카카오채널·리마케팅 자동화 설정법</li>
+          <li>성수기 대행사 계약 주의사항</li>
+        </ul>
+        <div class="report-price">
+          <span class="price-tbd">가격 미정 — 하반기 예정</span>
+        </div>
+        <a class="report-cta disabled" href="#">출시 알림 신청</a>
+      </div>
+
+      <!-- 업종별 특화 -->
+      <div class="report-card">
+        <span class="report-badge badge-upcoming">업종 특화 시리즈</span>
+        <h3>업종별 특화 마케팅 가이드<br>(외식/뷰티/학원/수리·서비스)</h3>
+        <p class="desc">외식업, 뷰티·헬스, 교육, 수리·서비스 등 업종별로 완전히 다른 마케팅 전략을 각각 별도 리포트로 제공합니다.</p>
+        <ul class="report-topics">
+          <li>업종별 주요 타겟과 구매 의사결정 경로</li>
+          <li>업종별 효과적인 매체와 집행 방식</li>
+          <li>경쟁 업소 대비 차별화 포인트 설계</li>
+          <li>업종별 리뷰·체험단 전략</li>
+        </ul>
+        <div class="report-price">
+          <span class="price-tbd">가격 미정 — 업종 선택 가능</span>
+        </div>
+        <a class="report-cta disabled" href="#">사전 등록하기</a>
+      </div>
+
+      <!-- 맞춤형 -->
+      <div class="report-card">
+        <span class="report-badge badge-custom">1:1 맞춤 진단</span>
+        <h3>개별 업체 맞춤형<br>마케팅 진단 리포트</h3>
+        <p class="desc">네이버 플레이스 링크나 인스타그램 계정을 제출하면, 현재 상태를 분석하여 "지금 당장 해야 할 것"을 1:1 처방으로 제공합니다.</p>
+        <ul class="report-topics">
+          <li>플레이스/인스타 현재 지표 진단</li>
+          <li>사진·키워드·설명글 개선 포인트</li>
+          <li>경쟁 업체 대비 포지셔닝 분석</li>
+          <li>3단계 우선순위 실행 로드맵</li>
+        </ul>
+        <div class="report-price">
+          <span class="price-tbd">별도 견적 — 상담 후 결정</span>
+        </div>
+        <a class="report-cta" href="mailto:your@email.com?subject=맞춤형 진단 리포트 문의">상담 문의하기</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTENTS -->
+<section class="contents" id="contents">
+  <div class="section-inner">
+    <p class="section-label">목차 미리보기</p>
+    <h2 class="section-title">리포트 안에 담긴 것들</h2>
+    <p class="section-desc">표준 리포트 공통 구성 기준입니다. 업종별·맞춤형은 해당 항목이 추가됩니다.</p>
+    <div class="toc-grid">
+      <div class="toc-chapter">
+        <div class="chapter-num">Chapter 01</div>
+        <h3 class="chapter-title">소비 트렌드 분석</h3>
+        <ul class="chapter-items">
+          <li>연령대별(2030·4050·60대) 소비 키워드</li>
+          <li>성별 구매 의사결정 방식 차이</li>
+          <li>수도권 vs 지방 소비 패턴</li>
+          <li>2026년 AI 에이전트 검색 대응법</li>
+          <li>요노(YONO)·픽셀라이프 트렌드 적용</li>
+        </ul>
+      </div>
+      <div class="toc-chapter">
+        <div class="chapter-num">Chapter 02</div>
+        <h3 class="chapter-title">광고 상품 가이드</h3>
+        <ul class="chapter-items">
+          <li>당근마켓 지역 광고 · 비즈프로필</li>
+          <li>카카오 비즈보드 · 알림톡 · 친구톡</li>
+          <li>메타(인스타그램) 지역 타겟팅 광고</li>
+          <li>네이버 플레이스 · 지역 소상공인 광고</li>
+          <li>티맵 카플레이스 광고</li>
+          <li>통신사 타겟 문자 발송 상품</li>
+          <li>마이크로 인플루언서·체험단 플랫폼</li>
+        </ul>
+      </div>
+      <div class="toc-chapter">
+        <div class="chapter-num">Chapter 03</div>
+        <h3 class="chapter-title">마케팅 최적화 (무료)</h3>
+        <ul class="chapter-items">
+          <li>SEO/LSO — 지도·검색 상위 노출 작업</li>
+          <li>전환율 최적화(CRO) — 클릭을 예약으로</li>
+          <li>CRM — 재방문율 극대화 시나리오</li>
+          <li>커뮤니티·맘카페 침투 마케팅</li>
+          <li>인스타그램 '저장' 유발 콘텐츠 설계</li>
+        </ul>
+      </div>
+      <div class="toc-chapter">
+        <div class="chapter-num">Chapter 04</div>
+        <h3 class="chapter-title">예산별 집행 레시피</h3>
+        <ul class="chapter-items">
+          <li>월 50만 원 — 최소 예산 최대 효율 조합</li>
+          <li>월 100만 원 — 기본기 완성 패키지</li>
+          <li>월 200만 원 — 공격적 성장 조합</li>
+          <li>카피라이팅 템플릿 10선 (업종별)</li>
+          <li>담당자 4단계 실행 체크리스트</li>
+        </ul>
+      </div>
+      <div class="toc-chapter">
+        <div class="chapter-num">Chapter 05</div>
+        <h3 class="chapter-title">피해야 할 것들</h3>
+        <ul class="chapter-items">
+          <li>사기성 광고 상품 Red Flag 목록</li>
+          <li>거러야 할 대행사 구별법</li>
+          <li>장기 계약·성과 미보고 대행사 주의</li>
+          <li>어뷰징 작업의 위험성과 대처법</li>
+        </ul>
+      </div>
+      <div class="toc-chapter">
+        <div class="chapter-num">부록</div>
+        <h3 class="chapter-title">마케팅 용어 사전</h3>
+        <ul class="chapter-items">
+          <li>CTR, ROAS, CPA, CPC 개념 정리</li>
+          <li>LSO, 리마케팅, 비즈프로필 해설</li>
+          <li>대행사 미팅 질문 리스트</li>
+          <li>요구해야 할 리포트 양식 기준</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLACKLIST -->
+<section class="blacklist" id="blacklist">
+  <div class="section-inner">
+    <p class="section-label">주의 정보</p>
+    <h2 class="section-title">이것만은 반드시 피하십시오</h2>
+    <p class="section-desc">소상공인의 절박함을 이용하는 수법들입니다. 25년 현장에서 직접 목격한 사례만 수록했습니다.</p>
+    <div class="warn-grid">
+      <div class="warn-card">
+        <div class="warn-icon">!</div>
+        <h3>"네이버 공식 협력사"를 사칭하는 전화</h3>
+        <p>네이버·티맵은 직접 전화 영업을 하지 않습니다. "지역 독점권 드린다", "당첨됐다"는 말과 함께 월 수십만 원 관리비를 요구하는 전화는 100% 대행 사기입니다.</p>
+        <span class="tag">전화 영업 주의</span>
+      </div>
+      <div class="warn-card">
+        <div class="warn-icon">!</div>
+        <h3>"상단 보장 무조건 가능" 작업 업체</h3>
+        <p>매크로 트래픽으로 단기 순위를 올리는 방식입니다. 적발 시 매장 정보가 영구 삭제됩니다. "안 되면 환불" 문구가 있어도 사업 기반 자체가 날아갈 수 있습니다.</p>
+        <span class="tag">어뷰징 제재 위험</span>
+      </div>
+      <div class="warn-card">
+        <div class="warn-icon">!</div>
+        <h3>1년 이상 장기 계약만 권유하는 대행사</h3>
+        <p>실력 있는 대행사는 월 단위로 성과를 증명합니다. 장기 계약은 성과 없이 발을 못 빼게 묶어두려는 수단인 경우가 대부분입니다.</p>
+        <span class="tag">계약 구조 주의</span>
+      </div>
+      <div class="warn-card">
+        <div class="warn-icon">!</div>
+        <h3>"10만 명에게 노출"만 강조하는 곳</h3>
+        <p>노출수는 의미 없습니다. 몇 명이 클릭하고 몇 명이 예약·방문했는지를 숫자로 증명하지 못하는 대행사는 피하십시오. 리포트를 요구하면 답을 못 하는 경우가 많습니다.</p>
+        <span class="tag">성과 지표 확인 필수</span>
+      </div>
+      <div class="warn-card">
+        <div class="warn-icon">!</div>
+        <h3>모든 업종에 똑같은 패키지 제안</h3>
+        <p>고깃집과 학원의 마케팅은 완전히 달라야 합니다. 업종에 대한 이해 없이 "블로그 배포 30건+SNS 관리" 패키지만 파는 곳은 거르십시오.</p>
+        <span class="tag">업종 이해 여부 확인</span>
+      </div>
+      <div class="warn-card">
+        <div class="warn-icon">!</div>
+        <h3>소상공인용 언론 기사 송출 상품</h3>
+        <p>소비자들은 소상공인 기사가 광고임을 이미 알고 있습니다. 검색 결과에 한 줄 남는 것 외에 실제 방문으로 이어지는 전환율이 극히 낮습니다. 비용 대비 효과가 없습니다.</p>
+        <span class="tag">전환율 극히 낮음</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section class="glossary" id="glossary">
+  <div class="section-inner">
+    <p class="section-label">마케팅 용어 사전</p>
+    <h2 class="section-title">대행사 앞에서 기죽지 않을<br>핵심 용어 8가지</h2>
+    <p class="section-desc">이 용어들만 알아도 대행사 미팅에서 사기를 피할 수 있습니다. 리포트 본문에는 전체 용어 사전이 수록됩니다.</p>
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-abbr">CTR</div>
+        <div class="term-name">클릭률 (Click-Through Rate)</div>
+        <p class="term-def">내 광고를 본 100명 중 몇 명이 클릭했나. 콘텐츠가 매력적인지 판단하는 기본 척도.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-abbr">ROAS</div>
+        <div class="term-name">광고 수익률 (Return On Ad Spend)</div>
+        <p class="term-def">100만 원 써서 매출이 얼마나 나왔나. 마케팅 가성비를 판단하는 가장 핵심 지표.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-abbr">CPA</div>
+        <div class="term-name">전환당 비용 (Cost Per Action)</div>
+        <p class="term-def">손님 1명의 예약·방문을 따내는 데 광고비가 얼마 들었나. ROAS보다 실질적.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-abbr">CPC</div>
+        <div class="term-name">클릭당 비용 (Cost Per Click)</div>
+        <p class="term-def">광고를 클릭 1회 할 때마다 과금되는 방식. 검색 광고·카카오 비즈보드 등에 적용.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-abbr">LSO</div>
+        <div class="term-name">지역 검색 최적화 (Local Search Optimization)</div>
+        <p class="term-def">지도 앱에서 우리 가게가 잘 보이게 만드는 기초 작업. 돈 안 들이는 가장 중요한 마케팅.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-abbr">CRO</div>
+        <div class="term-name">전환율 최적화 (Conversion Rate Optimization)</div>
+        <p class="term-def">100명이 광고를 보고 들어왔을 때 실제로 예약·구매까지 가는 비율을 높이는 작업.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-abbr">CRM</div>
+        <div class="term-name">고객 관계 관리 (Customer Relationship Management)</div>
+        <p class="term-def">기존 고객이 다시 오게 만드는 전략. 신규 유치보다 5~7배 저렴하고 효율이 높다.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-abbr">리마케팅</div>
+        <div class="term-name">Remarketing</div>
+        <p class="term-def">내 플레이스·홈페이지를 한 번이라도 본 사람에게 광고를 다시 보여주는 추격 마케팅.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section class="order" id="order">
+  <div class="section-inner">
+    <p class="section-label">구매 안내</p>
+    <h2 class="section-title">입금 즉시<br>이메일로 발송됩니다</h2>
+    <p class="section-desc">복잡한 회원 가입 없이, 계좌이체 후 이메일 주소만 남겨주시면 PDF 리포트를 즉시 발송합니다.</p>
+
+    <div class="order-steps">
+      <div class="order-step">
+        <div class="step-no">01</div>
+        <div class="step-title">원하는 리포트 선택</div>
+        <p class="step-desc">위 목록에서 필요한 리포트를 고르세요. 업종·시즌에 따라 다른 호를 복수 구매할 수 있습니다.</p>
+      </div>
+      <div class="order-step">
+        <div class="step-no">02</div>
+        <div class="step-title">아래 계좌로 입금</div>
+        <p class="step-desc">입금자명 뒤에 구매할 리포트명을 적어주세요. (예: 홍길동_상반기호)</p>
+      </div>
+      <div class="order-step">
+        <div class="step-no">03</div>
+        <div class="step-title">이메일로 수령 정보 전송</div>
+        <p class="step-desc">입금 후 수신 이메일과 입금자명을 아래 메일로 보내주세요.</p>
+      </div>
+      <div class="order-step">
+        <div class="step-no">04</div>
+        <div class="step-title">PDF 즉시 발송</div>
+        <p class="step-desc">확인 후 영업일 기준 24시간 이내 PDF를 이메일로 발송합니다.</p>
+      </div>
+    </div>
+
+    <div class="bank-info">
+      <div class="bank-row">
+        <span class="bank-label">은행</span>
+        <span class="bank-value">○○은행</span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">계좌번호</span>
+        <span class="bank-value">000-0000-000000</span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">예금주</span>
+        <span class="bank-value">홍길동 (또는 사업자명)</span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">수령 안내 메일</span>
+        <span class="bank-value">your@email.com</span>
+      </div>
+      <p class="bank-note">
+        입금 후 수신 이메일과 입금자명을 위 메일로 보내주세요.<br>
+        <strong>맞춤형 진단 리포트</strong>는 사전 상담 후 견적을 안내해 드립니다.<br>
+        문의 및 상담: your@email.com
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 소기업 마케팅 리포트. All rights reserved.</span>
+  <span>문의: <a href="mailto:your@email.com">your@email.com</a></span>
+</footer>
+
+</body>
+</html>
